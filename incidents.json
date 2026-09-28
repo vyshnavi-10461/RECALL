@@ -1,0 +1,112 @@
+[
+  {
+    "incident_id": "INC-001",
+    "service": "Payment API",
+    "severity": "Critical",
+    "error": "Database connection timeout",
+    "symptoms": "Payment requests were failing and API response time increased.",
+    "root_cause": "Database connection pool was exhausted during a traffic spike.",
+    "resolution": "Increased database connection pool size from 50 to 100.",
+    "outcome": "Successful",
+    "recovery_time_minutes": 4
+  },
+  {
+    "incident_id": "INC-002",
+    "service": "Authentication Service",
+    "severity": "High",
+    "error": "Authentication requests timing out",
+    "symptoms": "Users were unable to log in and authentication latency increased.",
+    "root_cause": "Redis cache became unavailable and authentication requests overloaded the database.",
+    "resolution": "Restarted Redis and enabled connection fallback to the database.",
+    "outcome": "Successful",
+    "recovery_time_minutes": 7
+  },
+  {
+    "incident_id": "INC-003",
+    "service": "Order Service",
+    "severity": "High",
+    "error": "HTTP 500 errors while creating orders",
+    "symptoms": "Customers received errors when placing orders.",
+    "root_cause": "Database deadlocks occurred because multiple transactions updated the same records.",
+    "resolution": "Optimized transaction ordering and added retry logic for deadlocks.",
+    "outcome": "Successful",
+    "recovery_time_minutes": 12
+  },
+  {
+    "incident_id": "INC-004",
+    "service": "Notification Service",
+    "severity": "Medium",
+    "error": "Notifications delayed",
+    "symptoms": "Email and SMS notifications were arriving several minutes late.",
+    "root_cause": "Message queue backlog increased because notification workers were under-provisioned.",
+    "resolution": "Increased the number of notification workers from 3 to 8.",
+    "outcome": "Successful",
+    "recovery_time_minutes": 9
+  },
+  {
+    "incident_id": "INC-005",
+    "service": "Payment API",
+    "severity": "Critical",
+    "error": "Database connection timeout",
+    "symptoms": "Payment requests intermittently failed during peak traffic.",
+    "root_cause": "Database connection pool reached its maximum limit.",
+    "resolution": "Increased connection pool size and optimized long-running database queries.",
+    "outcome": "Successful",
+    "recovery_time_minutes": 6
+  },
+  {
+    "incident_id": "INC-006",
+    "service": "Search Service",
+    "severity": "Medium",
+    "error": "Search requests returning 503",
+    "symptoms": "Product searches intermittently failed.",
+    "root_cause": "Search cluster nodes were overloaded due to high query volume.",
+    "resolution": "Added another search node and redistributed the query workload.",
+    "outcome": "Successful",
+    "recovery_time_minutes": 10
+  },
+  {
+    "incident_id": "INC-007",
+    "service": "User Profile Service",
+    "severity": "High",
+    "error": "Slow API responses",
+    "symptoms": "Profile pages took more than 10 seconds to load.",
+    "root_cause": "A missing database index caused full table scans.",
+    "resolution": "Added an index to the frequently queried user_id column.",
+    "outcome": "Successful",
+    "recovery_time_minutes": 8
+  },
+  {
+    "incident_id": "INC-008",
+    "service": "Payment API",
+    "severity": "High",
+    "error": "Payment requests returning HTTP 502",
+    "symptoms": "Some payments failed while others succeeded.",
+    "root_cause": "An upstream payment gateway was experiencing increased latency.",
+    "resolution": "Enabled retry with exponential backoff and temporarily routed traffic through a secondary gateway.",
+    "outcome": "Successful",
+    "recovery_time_minutes": 15
+  },
+  {
+    "incident_id": "INC-009",
+    "service": "Inventory Service",
+    "severity": "Medium",
+    "error": "Inventory updates delayed",
+    "symptoms": "Product stock counts were not updating immediately after purchases.",
+    "root_cause": "Inventory events were stuck in the message queue.",
+    "resolution": "Restarted failed consumers and increased consumer concurrency.",
+    "outcome": "Successful",
+    "recovery_time_minutes": 11
+  },
+  {
+    "incident_id": "INC-010",
+    "service": "Order Service",
+    "severity": "Critical",
+    "error": "Order creation completely unavailable",
+    "symptoms": "Customers could not place any orders.",
+    "root_cause": "A database migration locked a critical orders table.",
+    "resolution": "Rolled back the migration and rescheduled it during a maintenance window.",
+    "outcome": "Successful",
+    "recovery_time_minutes": 18
+  }
+]
